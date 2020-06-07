@@ -1,0 +1,10 @@
+#!/bin/bash
+
+echo 'Compressing Movie = ' $1
+echo 'Using Byte Rate = ' $2
+
+ffmpeg -i $1 -b $2 output.mp4
+
+# Copyright - Carlos Montalvo 2018
+# You may freely distribute this file but please keep my name in here
+# as the original owner

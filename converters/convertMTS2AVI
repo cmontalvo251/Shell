@@ -1,0 +1,21 @@
+#!/bin/bash
+
+for file in  *\ *; 
+do 
+    echo 'Converting:' "$file"; 
+    outfile=$file.MPG
+    echo 'To: ' "$outfile";
+    mplayer "$file" -ao pcm:fast:file=audio.wav -vc null -vo null
+    mencoder "$file" \
+     	 -ovc lavc -lavcopts vcodec=mpeg4:vhq:vbitrate=800 \
+       	 -oac mp3lame -lameopts vbr=3 \
+      	-audiofile audio.wav \
+       	 -o "$outfile"
+    rm -f audio.wav
+done
+
+
+
+# Copyright - Carlos Montalvo 2015
+# You may freely distribute this file but please keep my name in here
+# as the original owner

@@ -1,0 +1,22 @@
+#!/bin/bash
+
+#Try this if wifi problems persist - this worked below on 12/24/2016
+sudo service network-manager restart
+
+
+#then try this
+#ifconfig wlan0 down
+#ifconfig wlan0 up
+
+#or this
+#rfkill block wifi
+#wait 2-3 seconds
+#rfkill unblock wifi
+
+#worst case try this
+#iwconfig wlan0 txpower off
+#wait 10-15 seconds
+#iwconfig wlan0 txpower auto
+
+#if all else fails
+#sudo shutdown now

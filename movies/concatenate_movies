@@ -1,0 +1,15 @@
+#!/bin/bash
+
+if [ -f "mylist.txt" ]; then
+    rm mylist.txt
+fi
+
+for var in "$@"
+do
+   echo 'file' "$var" >> mylist.txt
+done
+
+echo 'Concatenating the following videos'
+cat mylist.txt
+
+ffmpeg -f concat -safe 0 -i mylist.txt -c copy output.mp4

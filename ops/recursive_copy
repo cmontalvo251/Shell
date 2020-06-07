@@ -1,0 +1,17 @@
+#!/bin/bash
+
+echo 'Copying all files of type: ' $1 ' to Directory: ' $2
+
+#Pipe all files found to standard out
+find ./ -name "$1"
+
+#Actually perform the copy
+find ./ -name "$1" -exec cp -t $2 {} +
+
+#YOu can also do this
+#find ./ -name "$1" | xargs cp -t $2
+
+
+# Copyright - Carlos Montalvo 2015
+# You may freely distribute this file but please keep my name in here
+# as the original owner

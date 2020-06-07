@@ -1,0 +1,15 @@
+#!/bin/bash
+
+file_extension=$1
+len=${#file_extension}
+
+for filename in ./*"$file_extension"; do
+    size=${#filename}
+    truncated=${filename:0:$size-$len}
+    echo $truncated
+    cp $filename ${truncated}$2
+done
+
+# Copyright - Carlos Montalvo 2015
+# You may freely distribute this file but please keep my name in here
+# as the original owner

@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# convertpdf2eps root_directory resolution
+
+echo 'Using Root Directory ' $1
+
+for d in $1*.pdf; do
+    #Remove pdf
+    filename=${d%.pdf}
+    echo $filename
+    #Convert to eps
+    pdftops -f 1 -l 1 -eps $filename.pdf $filename.eps -r $2
+done

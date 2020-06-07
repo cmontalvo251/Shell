@@ -1,0 +1,21 @@
+#!/bin/bash
+
+read -p "Name of file(no pdf)?- " filename
+
+if [ -e "$filename.pdf" ]; then
+    read -p "Resolution? " resolution
+    echo "Converting file to Jpg..."
+    convert -density $resolution $filename.pdf $filename.jpg
+    echo "File Converted"
+    if [ -e "filenames.log" ]; then
+	rm filenames.log
+    fi
+    echo $filename &> filenames.log
+else
+   echo $filename.pdf
+   echo "does not exist"
+fi
+
+# Copyright - Carlos Montalvo 2015
+# You may freely distribute this file but please keep my name in here
+# as the original owner

@@ -1,0 +1,13 @@
+#!/bin/bash
+
+echo 'Frame Rate = ' $1
+echo 'Output File Name = ' $2
+echo 'File Type = ' $3
+
+mf="mf://*.$3"
+
+mencoder -ovc lavc -mf fps=$1:type=$3 $mf -o $2
+
+# Copyright - Carlos Montalvo 2015
+# You may freely distribute this file but please keep my name in here
+# as the original owner

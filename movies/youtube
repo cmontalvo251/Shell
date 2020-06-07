@@ -1,0 +1,11 @@
+#!/bin/bash
+
+#download youtube video
+read -p "type or copy url here--" URL
+
+youtube-dl -o youtubevideo.flv $URL
+
+
+# Copyright - Carlos Montalvo 2015
+# You may freely distribute this file but please keep my name in here
+# as the original owner
