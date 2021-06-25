@@ -1,0 +1,15 @@
+#!/bin/bash
+
+videos=$(find *.m4v)
+
+vid_loop=$videos
+
+for vid in $videos; do
+    echo 'Current Video = ' $vid
+    #Remove last 3 characters
+    size=${#vid}
+    filename=${vid:0:$(($size-4))}
+    echo 'Filename = ' $filename
+    echo 'ffmpeg -i ' $filename'.m4v -c copy '$filename'.mp4'
+    ffmpeg -i $filename.m4v -c copy $filename.mp4
+done
