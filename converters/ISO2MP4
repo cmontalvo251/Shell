@@ -1,5 +1,10 @@
 #!/bin/bash
 
+#FOr more inspiration read this
+#https://www.internalpointers.com/post/convert-vob-files-mkv-ffmpeg
+
+##FIrst use brasero and make a clean copy of the dvd to an ISO. Then, mount the ISO to your computer and use this utility to copy all VOBs to your desktop and then convert them to mp4 for further procesing
+
 NAME=
 ISODIR=/run/user/1000/gvfs/archive:host=file%253A%252F%252F%252Fhome%252Fantec%252FDesktop%252F($NAME).iso
 
