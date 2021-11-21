@@ -1,28 +1,39 @@
 #!/bin/bash
 
-ISODIR=/run/user/1000/gvfs/archive:host=file%253A%252F%252F%252Fhome%252Fantec%252FDesktop%252FRAYA_AND_THE_LAST_DRAGON.iso
+NAME=
+ISODIR=/run/user/1000/gvfs/archive:host=file%253A%252F%252F%252Fhome%252Fantec%252FDesktop%252F($NAME).iso
 
 FILES=$(ls $ISODIR/VIDEO_TS/*.VOB)
 
-##MAKE THE RAYA DIR
-mkdir RAYA
+##MAKE THE DVD DIR
+mkdir DVD
 
 ###COPY FILE TO DESKTOP
 for VAR in $FILES
 do
     FILENAME=$(basename "$VAR")
     echo 'Copying to Desktop: ' $FILENAME 
-    cp $VAR ~/Desktop/RAYA/$FILENAME
+    cp $VAR ~/Desktop/DVD/$FILENAME
 done
 
-###CONVERT ALL VOB to MP4
+##CONVERT ALL VOB to MP4
 for VAR in $FILES
 do
     filename=$(basename -- "$VAR")
     extension="${filename##*.}"
     filename_no_ext="${filename%.*}"
     echo 'Converting ' $filename ' to: ' $filename_no_ext.mp4
-    ffmpeg -i RAYA/$filename RAYA/$filename_no_ext.mp4
+    ffmpeg -i DVD/$filename -c copy DVD/$filename_no_ext.mp4
 done
 
+mkdir DVD/VOBs
+mkdir DVD/MP4s
+mv DVD/*.mp4 DVD/MP4s
+mv DVD/*.VOB DVD/VOB
 
+##After this you need to prune the conversion and only save the VOBs/MP4s that you want
+##ONce you have the remaining VOBs that matter you run the following command
+# cat *.VOB > output.VOB
+# which will concatenate the entire VOB as one cohesive unit
+# then you run this to convert
+# ffmpeg -i output.VOB output.mp4
