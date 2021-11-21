@@ -1,0 +1,26 @@
+#!/bin/bash
+
+ISODIR=/run/user/1000/gvfs/archive:host=file%253A%252F%252F%252Fhome%252Fantec%252FDesktop%252FRAYA_AND_THE_LAST_DRAGON.iso
+
+FILES=$(ls $ISODIR/VIDEO_TS/*.VOB)
+
+##MAKE THE RAYA DIR
+mkdir RAYA
+
+###COPY FILE TO DESKTOP
+for VAR in $FILES
+do	 
+    FILENAME=$(basename "$VAR")
+    echo 'Copying to Desktop: ' $FILENAME 
+    cp $VAR ~/Desktop/RAYA/$FILENAME
+done
+
+###CONVERT ALL VOB to MP4
+for VAR in $FILES
+do
+    filename=$(basename -- "$VAR")
+    extension="${filename##*.}"
+    filename_no_ext="${filename%.*}"
+    echo 'Converting ' $filename ' to: ' $filename_no_ext.mp4
+    ffmpeg -i RAYA/$filename RAYA/$filename_no_ext.mp4
+done
