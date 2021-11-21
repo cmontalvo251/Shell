@@ -9,7 +9,7 @@ mkdir RAYA
 
 ###COPY FILE TO DESKTOP
 for VAR in $FILES
-do	 
+do
     FILENAME=$(basename "$VAR")
     echo 'Copying to Desktop: ' $FILENAME 
     cp $VAR ~/Desktop/RAYA/$FILENAME
@@ -24,3 +24,5 @@ do
     echo 'Converting ' $filename ' to: ' $filename_no_ext.mp4
     ffmpeg -i RAYA/$filename RAYA/$filename_no_ext.mp4
 done
+
+
