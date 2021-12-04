@@ -6,7 +6,7 @@
 ##FIrst use brasero and make a clean copy of the dvd to an ISO. Then, mount the ISO to your computer and use this utility to copy all VOBs to your desktop and then convert them to mp4 for further procesing
 
 NAME=
-ISODIR=/run/user/1000/gvfs/archive:host=file%253A%252F%252F%252Fhome%252Fantec%252FDesktop%252F($NAME).iso
+ISODIR=/run/user/1000/gvfs/archive:host=file%253A%252F%252F%252Fhome%252Fantec%252FDesktop%252F$NAME.iso
 
 FILES=$(ls $ISODIR/VIDEO_TS/*.VOB)
 
@@ -34,7 +34,7 @@ done
 mkdir DVD/VOBs
 mkdir DVD/MP4s
 mv DVD/*.mp4 DVD/MP4s
-mv DVD/*.VOB DVD/VOB
+mv DVD/*.VOB DVD/VOBs
 
 ##After this you need to prune the conversion and only save the VOBs/MP4s that you want
 ##ONce you have the remaining VOBs that matter you run the following command
