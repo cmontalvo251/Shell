@@ -1,5 +1,11 @@
 #!/bin/bash
 
+#Invoke like this
+#concatenate_movies movie1 movie2 movie3 ... movieN
+#Example
+#concatenate_movies 1.mp4 2.mp4
+#^This will combine 1.mp4 and 2.mp4 into output.mp4
+
 if [ -f "mylist.txt" ]; then
     rm mylist.txt
 fi
@@ -9,7 +15,7 @@ do
    echo 'file' "$var" >> mylist.txt
 done
 
-echo 'Concatenating the following videos'
+echo 'Concatenating the following videos (do not worry about the word file)'
 cat mylist.txt
 
 ffmpeg -f concat -safe 0 -i mylist.txt -c copy output.mp4

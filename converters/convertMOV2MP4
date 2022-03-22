@@ -1,0 +1,4 @@
+#!/bin/bash
+
+echo 'ffmpeg -i $1.mov -c copy $1.mp4'
+ffmpeg -i $1.mov -c copy $1.mp4
