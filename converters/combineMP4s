@@ -1,0 +1,19 @@
+#!/bin/bash
+
+videos=$(find *.MP4)
+
+if test -f "inputs.txt"; then
+   echo 'Removing inputs.txt'
+   rm inputs.txt
+fi
+
+for vid in $videos; do
+    echo 'file ' $vid >> inputs.txt
+done
+
+echo 'Combining the following files:'
+cat inputs.txt
+
+ffmpeg -f concat -i inputs.txt -c copy output.mp4
+
+
