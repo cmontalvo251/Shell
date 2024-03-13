@@ -1,0 +1,6 @@
+#!/bin/bash
+
+echo 'File Name = ',$1
+echo 'File Type = ',$2
+
+convert -delay 20 -loop 0 *.$2 $1
