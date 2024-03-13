@@ -1,0 +1,3 @@
+#!/bin/bash
+#This will fix \r\n lineendings on windows
+tr -d '\15\32' < $1 > $1_win

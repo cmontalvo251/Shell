@@ -1,12 +1,9 @@
 #!/bin/bash
-
 #make a backup
 cp $1 $1.backup
 #remove the lineendings
 tr -cd '\11\12\15\40-\176' < $1 > $1.fixed
 cp $1.fixed $1
-
-
 # Copyright - Carlos Montalvo 2015
 # You may freely distribute this file but please keep my name in here
 # as the original owner
