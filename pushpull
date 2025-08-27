@@ -1,5 +1,13 @@
 #!/bin/bash
 
+##Note alternatively you can add an alias to your ~/.bashrc file
+# alias branch='git branch --show-current'
+# Then source the bashrc file or logout and log back in
+# source ~/.bashrc
+# then you can just run
+# git push/pull origin $(branch)
+# and it'll grab the current branch and push or pull it
+
 # Check if the first argument is empty.
 if [ -z "$1" ]; then
     echo "Error: Need input argument that says 'push' or 'pull'"
