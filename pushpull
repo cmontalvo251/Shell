@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# Check if the first argument is empty.
+if [ -z "$1" ]; then
+    echo "Error: Need input argument that says 'push' or 'pull'"
+    exit 1
+fi
+
+
+#Echo the inputs from the user
+DIRECTION=$1
+
+echo 'You are choosing to ' $DIRECTION
+
+#run git branch to find out the branch name and save that to a variable
+BRANCHNAME=$(git branch --show-current)
+
+echo 'The branch name is ' $BRANCHNAME
+
+#Then push or pull from that branch name
+echo 'git' $DIRECTION 'origin' $BRANCHNAME
+git $DIRECTION origin $BRANCHNAME
