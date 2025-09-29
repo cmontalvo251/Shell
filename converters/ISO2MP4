@@ -4,11 +4,12 @@
 #https://www.internalpointers.com/post/convert-vob-files-mkv-ffmpeg
 
 ##FIrst use brasero and make a clean copy of the dvd to an ISO. Then, mount the ISO to your computer and use this utility to copy all VOBs to your desktop and then convert them to mp4 for further procesing
+##You can't copy the VOBs directly from the ISO because they are locked for read only. So you need to copy them to your desktop first using brasero and make the clean ISO copy.
 
-NAME=
-ISODIR=/run/user/1000/gvfs/archive:host=file%253A%252F%252F%252Fhome%252Fantec%252FDesktop%252F$NAME.iso
+#NAME=
+#DIR=/run/user/1000/gvfs/archive:host=file%253A%252F%252F%252Fhome%252Fantec%252FDesktop%252F$NAME.iso
 
-FILES=$(ls $ISODIR/VIDEO_TS/*.VOB)
+FILES=$(ls $DIR/VIDEO_TS/*.VOB)
 
 ##MAKE THE DVD DIR
 mkdir DVD
@@ -17,8 +18,8 @@ mkdir DVD
 for VAR in $FILES
 do
     FILENAME=$(basename "$VAR")
-    echo 'Copying to Desktop: ' $FILENAME 
-    cp $VAR ~/Desktop/DVD/$FILENAME
+    echo 'Copying to computer: ' $FILENAME 
+    rsync -ah --info=progress2 $VAR DVD/$FILENAME
 done
 
 ##CONVERT ALL VOB to MP4
