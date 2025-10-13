@@ -7,6 +7,8 @@
 # then you can just run
 # git push/pull origin $(branch)
 # and it'll grab the current branch and push or pull it
+# You can also create this alias using a function
+#alias get='f() { git "$1" origin "$(git branch --show-current)"; unset -f f; }; f'
 
 # Check if the first argument is empty.
 if [ -z "$1" ]; then
