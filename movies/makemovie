@@ -1,13 +1,46 @@
 #!/bin/bash
+# Shebang: Specifies the interpreter for the script (Bourne-Again Shell)
 
-echo 'Frame Rate = ' $1
-echo 'Output File Name = ' $2
-echo 'File Type = ' $3
+# The script expects three arguments to be passed when it is run:
+# $1: The desired frame rate (e.g., 30)
+# $2: The name of the final output video file (e.g., 'my_animation.avi')
+# $3: The file extension/type of the input images (e.g., 'png' or 'jpg')
 
+# --- Displaying Input Arguments ---
+
+echo 'Frame Rate = ' $1      # Prints the frame rate passed as the first argument ($1)
+echo 'Output File Name = ' $2 # Prints the output file name passed as the second argument ($2)
+echo 'File Type = ' $3        # Prints the input image file type/extension ($3)
+
+# --- Building the MEncoder Input String ---
+
+# 'mf' stands for 'movie file' or 'multifile'. 
+# This variable creates a string that tells MEncoder which files to use as input.
+# The format 'mf://*.$3' means "use all files (the '*') that end with the extension specified by $3"
 mf="mf://*.$3"
 
-mencoder -ovc lavc -mf fps=$1:type=$3 $mf -o $2
+# --- MEncoder Command Execution ---
+
+mencoder \
+    -ovc lavc \
+    -mf fps=$1:type=$3 $mf \
+    -o $2
+
+# Breakdown of the MEncoder command:
+#
+# mencoder:          # The command-line video encoding program.
+# -ovc lavc:         # Output Video Codec (ovc): Specifies the video compressor to use.
+#                    # 'lavc' means libavcodec, a popular open-source codec library, 
+#                    # which handles common formats like MPEG-4, H.264, etc.
+# -mf:               # Multi-File mode: Tells MEncoder to treat a sequence of images as the input.
+# fps=$1:            # Sets the Frames Per Second (FPS) of the output video using the value from $1.
+# type=$3:           # Tells MEncoder the file type of the input images using the value from $3.
+# $mf:               # The input file string created above (e.g., 'mf://*.png') - the image sequence.
+# -o $2:             # Output file: Specifies the name of the final video file, using the value from $2.
+
+# --- Copyright Note ---
 
 # Copyright - Carlos Montalvo 2015
 # You may freely distribute this file but please keep my name in here
 # as the original owner
+# Note that gemini was used in 2025 to add comments to understand what everything means.
