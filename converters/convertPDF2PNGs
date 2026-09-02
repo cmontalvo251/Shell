@@ -1,0 +1,19 @@
+#!/bin/bash
+
+for file in *.pdf; do
+    # Skip if no PDF files are found in the directory
+    [ -e "$file" ] || continue
+
+    echo 'Converting File = ' $file
+    
+    # Strip the .pdf extension to use as the base name
+    name="${file%.pdf}"
+    
+    # Convert only the first page using pdftoppm
+    pdftoppm -png -f 1 -l 1 "$file" "$name"
+    
+    # Rename the default output (name-1.png) to name.png
+    if [ -f "${name}-1.png" ]; then
+        mv "${name}-1.png" "${name}.png"
+    fi
+done
